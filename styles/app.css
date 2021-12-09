@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.filter {
+  @apply font-semibold uppercase py-1 px-3 text-sm rounded-lg m-1 border;
+  animation: button-pop var(--animation-btn, 0.25s) ease-out;
+
+  &:active:hover,
+  &:active:focus {
+    animation: none;
+    transform: scale(var(--btn-focus-scale, 0.95));
+  }
+
+  &-active {
+    background: hsla(var(--s) / var(--tw-bg-opacity, 1));
+    border-color: hsla(var(--s) / var(--tw-bg-opacity, 1));
+  }
+}

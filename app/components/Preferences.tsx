@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { VscClose } from "react-icons/vsc";
+import cn from "classnames";
 
 export const GENRES = [
   "Minimal",
@@ -30,6 +32,20 @@ export const VIBES = [
 ];
 
 export default function Preferences() {
+  const [active, setActive] = useState<Array<string>>([]);
+
+  function isActive(option: string): boolean {
+    return active.includes(option);
+  }
+
+  function toggleActive(option: string) {
+    if (isActive(option)) {
+      setActive(active.filter((o) => o !== option));
+    } else {
+      setActive([...active, option]);
+    }
+  }
+
   return (
     <div className="drawer-content">
       <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content">
@@ -47,24 +63,36 @@ export default function Preferences() {
         </div>
       </div>
 
-      <div className="px-2 py-2">
-        <h2 className="">GENRES:</h2>
+      <div className="p-2">
+        <h2 className="ml-2">Genres:</h2>
         {GENRES.map((genre) => (
-          <button className="btn btn-outline m2 mr-2 ml-2 px-2 mx-2 m-2 my-2">
+          <button
+            key={genre}
+            onClick={() => toggleActive(genre)}
+            className={cn("filter", { "filter-active": isActive(genre) })}
+          >
             {genre}
           </button>
         ))}
 
-        <h2 className="">GENRES:</h2>
+        <h2 className="ml-2 mt-4">Venues:</h2>
         {VENUES.map((venue) => (
-          <button className="btn btn-outline m2 mr-2 ml-2 px-2 mx-2 m-2 my-2">
+          <button
+            key={venue}
+            onClick={() => toggleActive(venue)}
+            className={cn("filter", { "filter-active": isActive(venue) })}
+          >
             {venue}
           </button>
         ))}
 
-        <h2 className="">VIBES:</h2>
+        <h2 className="ml-2 mt-4">Vibes:</h2>
         {VIBES.map((vibe) => (
-          <button className="btn btn-outline m2 mr-2 ml-2 px-2 mx-2 m-2 my-2">
+          <button
+            key={vibe}
+            onClick={() => toggleActive(vibe)}
+            className={cn("filter", { "filter-active": isActive(vibe) })}
+          >
             {vibe}
           </button>
         ))}

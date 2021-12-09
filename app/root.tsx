@@ -10,7 +10,7 @@ import {
 } from "remix";
 import type { LinksFunction } from "remix";
 import Navbar from "./components/Navbar";
-import styles from "./tailwind.css";
+import styles from "./styles/app.css";
 import Preferences from "./components/Preferences";
 
 // https://remix.run/api/app#links
